@@ -24,6 +24,7 @@ if(NOT DESKTOPBUILD)
   PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include
   PUBLIC SYSTEM ${WUEHANS_ROOT}/lib
   PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include/newlib # This needs to be after libstdc++ because of include_nexts - JH
+  PRIVATE include
   )
 
   target_link_libraries(${FINAL_TARGET}
@@ -52,6 +53,7 @@ endif()
 
 target_include_directories(${FINAL_TARGET}
   PUBLIC SYSTEM ${WUEHANS_ROOT}/wuehans
+  PRIVATE include
 )
 
 #███████████████████████████████████████████████████████████
@@ -63,7 +65,8 @@ target_include_directories(${FINAL_TARGET}
 
 target_sources(${FINAL_TARGET} PUBLIC
   # Add your .cpp files here
-  "main.cpp"
+  "source/main.cpp"
+  "source/SplashScreen.cpp"
 )
 
 # This is stuff for debugging the hardware. Just ignore it :)
