@@ -42,6 +42,8 @@ This directory will contain your built project
 This directory contains helper files for cmake. You usually don't need to touch it
 #### code/
 This is where all your code, assets, and any file in general should go. This folder is yours
+#### code/assets
+Place all files, that your game needs in here. They will be copied over to the build directory
 #### lib/
 This directory contains system libraries, that are needed for building your project. You usually don't need to touch it
 #### system-include/
