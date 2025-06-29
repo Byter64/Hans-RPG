@@ -1,20 +1,19 @@
-#include <Hall/Hall.h>
-#include "Halib/Image.h"
-#include "Halib/Misc.h"
+#include "Halib/Graphic.h"
+#include "Halib/System.h"
 #include "SplashScreen.h"
 
 int main() 
 {
-	Hall::Init();
+	Halib::Init();
 
 	SplashScreen::ShowSplashScreen();
 
 	//This is your game loop. The program should never leave it.
-	while(!Hall::ShouldClose()) 
+	while(!Halib::GetShouldClose()) 
 	{
-		Halib::Misc::ClearFrame(0b0010000100001001);
+		Halib::Clear(0b0010000100001001);
 		
-		Halib::Misc::ShowFrame();
+		Halib::Show();
 	}
 	return 0;
 }

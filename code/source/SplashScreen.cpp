@@ -1,41 +1,50 @@
 #include "SplashScreen.h"
-#include "Halib/Image.h"
+#include "Halib/Graphic.h"
 #include "Halib/Misc.h"
+#include "Halib/System.h"
 
 static void DarkenImage(Halib::Image& image)
 {
-	Hall::Color* color = image.GetData();
+	Halib::Color* color = image.GetData();
 	for(; color < (image.GetData() + image.GetWidth() * image.GetHeight()); color++)
 	{
-		*color = (*color >> 1) | (*color & 1);
+		color->SetRed(color->GetRed() / 2);
+		color->SetGreen(color->GetGreen() / 2);
+		color->SetBlue(color->GetBlue() / 2);
 	}
 }
 
 void SplashScreen::ShowSplashScreen()
 {
-	Halib::Image hansLogo("assets/hans_logo.bmp");
+	Halib::Image byterLogo("assets/byterLogo.bmp");
 	
 	float timePoint = Halib::Misc::GetTimeSinceStartup();
 	float newTimePoint = Halib::Misc::GetTimeSinceStartup();
 	float delta = 1/60.0f;
 
 	float time = 0;
-	while(!Hall::ShouldClose()) 
+	int darkenCounter = 0;
+	while(!Halib::GetShouldClose()) 
 	{ 
 		timePoint = newTimePoint;
 		newTimePoint = Halib::Misc::GetTimeSinceStartup();
 		delta = newTimePoint - timePoint; 
 		time += delta;
-		printf("%f\n", time);
 
-		if(time >= 1)
+		if(time >= 3)
 		{
-			time = 0;
-			DarkenImage(hansLogo);
+			time = 2.5f;
+			DarkenImage(byterLogo);
+			darkenCounter++;
 		}
 
-		Halib::Misc::ClearFrame(0b0010000100001001);
-		hansLogo.Draw(Halib::VecI2{40, 40});
-		Halib::Misc::ShowFrame();
+		Halib::Clear(Halib::Color(0, 0, 0));
+		Halib::Draw(byterLogo, Halib::VecI2{150, 40});
+		Halib::Show();
+
+		if(darkenCounter == 5)
+		{
+			break;
+		}
 	}
 }
