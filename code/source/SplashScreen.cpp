@@ -17,6 +17,7 @@ static void DarkenImage(Halib::Image& image)
 void SplashScreen::ShowSplashScreen()
 {
 	Halib::Image byterLogo("assets/byterLogo.bmp");
+	Halib::Font pixelGameFont("assets/Font/pixel-game/Pixel Game.otf");
 	
 	float timePoint = Halib::Misc::GetTimeSinceStartup();
 	float newTimePoint = Halib::Misc::GetTimeSinceStartup();
@@ -39,6 +40,7 @@ void SplashScreen::ShowSplashScreen()
 		}
 
 		Halib::Clear(Halib::Color(0, 0, 0));
+		Halib::Draw(std::string("Hans-RPG"), Halib::VecI2{150, 200}, pixelGameFont);
 		Halib::Draw(byterLogo, Halib::VecI2{150, 40});
 		Halib::Show();
 
