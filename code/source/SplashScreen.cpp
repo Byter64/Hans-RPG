@@ -2,15 +2,21 @@
 #include "Halib/Graphic.h"
 #include "Halib/Misc.h"
 #include "Halib/System.h"
+#include <Hall/Hall.h>
+
+static void DarkenColor(Halib::Color& color)
+{
+	color.SetRed(color.GetRed() / 2);
+	color.SetGreen(color.GetGreen() / 2);
+	color.SetBlue(color.GetBlue() / 2);
+}
 
 static void DarkenImage(Halib::Image& image)
 {
 	Halib::Color* color = image.GetData();
 	for(; color < (image.GetData() + image.GetWidth() * image.GetHeight()); color++)
 	{
-		color->SetRed(color->GetRed() / 2);
-		color->SetGreen(color->GetGreen() / 2);
-		color->SetBlue(color->GetBlue() / 2);
+		DarkenColor(*color);
 	}
 }
 
@@ -25,6 +31,7 @@ void SplashScreen::ShowSplashScreen()
 
 	float time = 0;
 	int darkenCounter = 0;
+	Halib::Color textColor{31, 31, 31, true};
 	while(!Halib::GetShouldClose()) 
 	{ 
 		timePoint = newTimePoint;
@@ -36,12 +43,14 @@ void SplashScreen::ShowSplashScreen()
 		{
 			time = 2.5f;
 			DarkenImage(byterLogo);
+			DarkenColor(textColor);
 			darkenCounter++;
 		}
 
 		Halib::Clear(Halib::Color(0, 0, 0));
-		Halib::Draw(std::string("Hans-RPG"), Halib::VecI2{150, 200}, pixelGameFont);
 		Halib::Draw(byterLogo, Halib::VecI2{150, 40});
+		Halib::Draw(std::string("A Byte Intensive Game"), Halib::VecI2{145, 150}, pixelGameFont, textColor);
+
 		Halib::Show();
 
 		if(darkenCounter == 5)
