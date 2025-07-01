@@ -26,7 +26,7 @@ void SplashScreen::ShowSplashScreen()
 	
 	float timePoint = Halib::GetTimeSinceStartup();
 	float newTimePoint = Halib::GetTimeSinceStartup();
-	float delta = 1/60.0f;
+	float delta = 1/30.0f;
 
 	float time = 0;
 	int darkenCounter = 0;
@@ -38,7 +38,7 @@ void SplashScreen::ShowSplashScreen()
 		delta = newTimePoint - timePoint; 
 		time += delta;
 
-		//I need a sound here :(
+		//I want a sound here :(
 		if(time >= 3)
 		{
 			time = 2.5f;
