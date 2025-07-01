@@ -1,6 +1,5 @@
 #include "SplashScreen.h"
 #include "Halib/Graphic.h"
-#include "Halib/Misc.h"
 #include "Halib/System.h"
 #include <Hall/Hall.h>
 
@@ -25,8 +24,8 @@ void SplashScreen::ShowSplashScreen()
 	Halib::Image byterLogo("assets/byterLogo.bmp");
 	Halib::Font pixelGameFont("assets/Font/pixel-game/Pixel Game.otf");
 	
-	float timePoint = Halib::Misc::GetTimeSinceStartup();
-	float newTimePoint = Halib::Misc::GetTimeSinceStartup();
+	float timePoint = Halib::GetTimeSinceStartup();
+	float newTimePoint = Halib::GetTimeSinceStartup();
 	float delta = 1/60.0f;
 
 	float time = 0;
@@ -35,7 +34,7 @@ void SplashScreen::ShowSplashScreen()
 	while(!Halib::GetShouldClose()) 
 	{ 
 		timePoint = newTimePoint;
-		newTimePoint = Halib::Misc::GetTimeSinceStartup();
+		newTimePoint = Halib::GetTimeSinceStartup();
 		delta = newTimePoint - timePoint; 
 		time += delta;
 
