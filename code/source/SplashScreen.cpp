@@ -39,6 +39,7 @@ void SplashScreen::ShowSplashScreen()
 		delta = newTimePoint - timePoint; 
 		time += delta;
 
+		//I need a sound here :(
 		if(time >= 3)
 		{
 			time = 2.5f;
@@ -49,7 +50,7 @@ void SplashScreen::ShowSplashScreen()
 
 		Halib::Clear(Halib::Color(0, 0, 0));
 		Halib::Draw(byterLogo, Halib::VecI2{150, 40});
-		Halib::Draw(std::string("A Byte Intensive Game"), Halib::VecI2{145, 150}, pixelGameFont, textColor);
+		Halib::Draw(std::string("A Byte-Intensive Game"), Halib::VecI2{145, 150}, pixelGameFont, textColor);
 
 		Halib::Show();
 
