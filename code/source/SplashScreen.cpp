@@ -24,6 +24,7 @@ void SplashScreen::ShowSplashScreen()
 	Halib::Image byterLogo("assets/byterLogo.bmp");
 	Halib::Font pixelGameFont("assets/Font/pixel-game/Pixel Game.otf");
 	
+	
 	float timePoint = Halib::GetTimeSinceStartup();
 	float newTimePoint = Halib::GetTimeSinceStartup();
 	float delta = 1/30.0f;
@@ -31,13 +32,13 @@ void SplashScreen::ShowSplashScreen()
 	float time = 0;
 	int darkenCounter = 0;
 	Halib::Color textColor{31, 31, 31, true};
-	while(!Halib::GetShouldClose()) 
+	while(!Halib::GetShouldClose())
 	{ 
+		
 		timePoint = newTimePoint;
 		newTimePoint = Halib::GetTimeSinceStartup();
 		delta = newTimePoint - timePoint; 
 		time += delta;
-
 		//I want a sound here :(
 		if(time >= 3)
 		{
@@ -57,5 +58,6 @@ void SplashScreen::ShowSplashScreen()
 		{
 			break;
 		}
+		
 	}
 }

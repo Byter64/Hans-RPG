@@ -41,9 +41,10 @@ int main()
 		player2.Draw(Halib::VecI2(40, 10), deltaTime, camera);
 		player3.Draw(Halib::VecI2(80, 10), deltaTime, camera);
 		player4.Draw(Halib::VecI2(120, 10), deltaTime, camera);
+		Halib::Draw(*player1.GetImage(), Halib::VecI2(240, 10));
 		Halib::Show();
 
-		camera.position += Halib::VecI2(1, 0);
+		//camera.position += Halib::VecI2(1, 0);
 	}
 	return 0;
 }
