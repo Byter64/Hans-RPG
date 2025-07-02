@@ -11,3 +11,5 @@ build/wueHans/*
 !build/Desktop
 build/Desktop/*
 !build/Desktop/dummy.txt
+out/*
+.vs/*

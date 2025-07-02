@@ -1,6 +1,7 @@
 #include "Halib/Graphic.h"
 #include "Halib/System.h"
 #include "SplashScreen.h"
+#include "PartyCharacter.h"
 
 int main() 
 {
@@ -8,19 +9,11 @@ int main()
 
 	SplashScreen::ShowSplashScreen();
 
-	Halib::Sprite player1 = Halib::Sprite("assets/NinjaAdventure/Actor/Characters/NinjaMasked/SpriteSheet.bmp", Halib::VecI2(4, 7));
-	player1.SetupAnimation(Halib::VecI2(0, 0), 4, 1, Halib::Sprite::DOWN);
-	player1.isPlaying = true;
+	Halib::Sprite playerSprite = Halib::Sprite("assets/NinjaAdventure/Actor/Characters/NinjaMasked/SpriteSheet.bmp", Halib::VecI2(4, 7));
+	playerSprite.SetupAnimation(Halib::VecI2(0, 0), 4, 3, Halib::Sprite::DOWN);
+	playerSprite.isPlaying = true;
+	PartyCharacter player = PartyCharacter(playerSprite, Halib::VecI2(200, 120));
 
-	Halib::Sprite player2 = player1;
-	player2.SetupAnimation(Halib::VecI2(1, 0), 4, 5, Halib::Sprite::DOWN);
-
-	Halib::Sprite player3 = player1;
-	player3.SetupAnimation(Halib::VecI2(2, 0), 4, 2, Halib::Sprite::DOWN);
-
-	Halib::Sprite player4 = player1;
-	player4.SetupAnimation(Halib::VecI2(3, 0), 4, 20, Halib::Sprite::DOWN);
-	player4.scale = Halib::VecI2(2, 5);
 
 	Halib::Camera camera = Halib::Camera();
 
@@ -31,17 +24,17 @@ int main()
 	//This is your game loop. The program should never leave it.
 	while(!Halib::GetShouldClose()) 
 	{
+		Halib::UpdateInputs();
 		timePoint = newTimePoint;
 		newTimePoint = Halib::GetTimeSinceStartup();
 		deltaTime = newTimePoint - timePoint;
 
+
+		player.Update(deltaTime);
+
 		Halib::Clear(Halib::Color(15, 15, 15));
 		
-		player1.Draw(Halib::VecI2(10, 10), deltaTime, camera);
-		player2.Draw(Halib::VecI2(40, 10), deltaTime, camera);
-		player3.Draw(Halib::VecI2(80, 10), deltaTime, camera);
-		player4.Draw(Halib::VecI2(120, 10), deltaTime, camera);
-		Halib::Draw(*player1.GetImage(), Halib::VecI2(240, 10));
+		player.Draw(deltaTime);
 		Halib::Show();
 
 		//camera.position += Halib::VecI2(1, 0);

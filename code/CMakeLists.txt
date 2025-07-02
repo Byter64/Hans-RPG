@@ -16,8 +16,6 @@ add_executable(${FINAL_TARGET})
 #)
 #add_dependencies(${FINAL_TARGET} copy_assets)
 
-#libstdc++ is not working properly currently. I would like to try out libc++, 
-#I just need to get it compiled :(
 if(NOT DESKTOPBUILD)
   target_include_directories(${FINAL_TARGET}
   #PUBLIC SYSTEM ${WUEHANS_ROOT}/system-include/libstdc++
@@ -68,6 +66,7 @@ target_sources(${FINAL_TARGET} PUBLIC
   # Add your .cpp files here
   "source/main.cpp"
   "source/SplashScreen.cpp"
+  "source/PartyCharacter.cpp"
 )
 
 # This is stuff for debugging the hardware. Just ignore it :)

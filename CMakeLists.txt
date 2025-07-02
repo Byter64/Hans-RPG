@@ -16,7 +16,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 include(FetchContent)
 FetchContent_Declare(Halib
-    GIT_REPOSITORY https://github.com/byter64/Halib.git
+    GIT_REPOSITORY "C:/Users/Yannik Stamm/Desktop/Halib"
     GIT_TAG develop
 )
 
