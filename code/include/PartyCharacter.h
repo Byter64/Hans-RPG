@@ -1,18 +1,16 @@
 #pragma once
 #include "Halib/Graphic.h"
 #include "Halib/Math.h"
+#include "Halib/Entity.h"
 
 /// @brief A character that is part of your party
-class PartyCharacter
+class PartyCharacter : public Halib::Entity
 {
 	static const int ACCELERATION = 12; //Pixels per second²
 	static const int MAX_SPEED = 3; //per dimension
 	const float DEACCELERATION = 0.85f; 
-
-	Halib::Sprite sprite;
 	
 	Halib::Vec2 velocity;
-	Halib::Vec2 position;
 
 	void UpdatePosition(float deltaTime);
 	void UpdateSprite();

@@ -22,7 +22,7 @@ void PartyCharacter::UpdatePosition(float deltaTime)
 	if (dpadInput.y == 0)
 		velocity.y *= DEACCELERATION;
 
-	position += velocity;
+	AddPosition(Halib::Vec3(velocity, 0));
 }
 
 void PartyCharacter::UpdateSprite()
@@ -41,13 +41,11 @@ void PartyCharacter::UpdateSprite()
 		else
 			sprite.animationStartIndex.x = 1;
 	}
-	Halib::VecI2 frameIndex = sprite.GetFrameIndex();
-	frameIndex.x = sprite.animationStartIndex.x;
-	sprite.SetFrameIndex(frameIndex);
-	sprite.framesPerSecond = velocity.Magnitude() * 3;
+	sprite.frameIndex.x = sprite.animationStartIndex.x;
+	sprite.framesPerSecond = Halib::Magnitude(velocity) * 3;
 }
 
-PartyCharacter::PartyCharacter(Halib::Sprite sprite, Halib::VecI2 position) : sprite(sprite), position(position)
+PartyCharacter::PartyCharacter(Halib::Sprite sprite, Halib::VecI2 position) : Entity(sprite, Halib::Vec3(position, 0))
 {
 
 }
@@ -60,7 +58,7 @@ void PartyCharacter::Update(float deltaTime)
 
 void PartyCharacter::Draw(float deltaTime)
 {
-	Halib::VecI2 intPos = Halib::VecI2(position.x, position.y);
+	Halib::VecI2 intPos = GetPosition();
 	sprite.Draw(intPos, deltaTime);
 }
 
