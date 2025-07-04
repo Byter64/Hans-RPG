@@ -14,30 +14,16 @@ int main()
 	playerSprite.isPlaying = true;
 	PartyCharacter player = PartyCharacter(playerSprite, Halib::VecI2(200, 120));
 
+	
 
-	Halib::Camera camera = Halib::Camera();
-
-	float timePoint = Halib::GetTimeSinceStartup();
-	float newTimePoint = Halib::GetTimeSinceStartup();
-	float deltaTime = 1 / 30.0f;
+	Halib::rendersystem.backgroundColor = Halib::Color(15, 15, 15);
 
 	//This is your game loop. The program should never leave it.
 	while(!Halib::GetShouldClose()) 
 	{
-		Halib::UpdateInputs();
-		timePoint = newTimePoint;
-		newTimePoint = Halib::GetTimeSinceStartup();
-		deltaTime = newTimePoint - timePoint;
+		Halib::Update();
 
-
-		player.Update(deltaTime);
-
-		Halib::Clear(Halib::Color(15, 15, 15));
-		
-		player.Draw(deltaTime);
-		Halib::Show();
-
-		//camera.position += Halib::VecI2(1, 0);
+		Halib::rendersystem.camera.position += Halib::VecI2(1, 0);
 	}
 	return 0;
 }

@@ -45,13 +45,14 @@ void PartyCharacter::UpdateSprite()
 	sprite.framesPerSecond = Halib::Magnitude(velocity) * 3;
 }
 
-PartyCharacter::PartyCharacter(Halib::Sprite sprite, Halib::VecI2 position) : Entity(sprite, Halib::Vec3(position, 0))
+PartyCharacter::PartyCharacter(Halib::Sprite sprite, Halib::VecI2 position) : Entity(sprite, Halib::Vec3(position, 0)), velocity(Halib::Vec2(0, 0))
 {
 
 }
 
 void PartyCharacter::Update(float deltaTime)
 {
+	
 	UpdatePosition(deltaTime);
 	UpdateSprite();
 }
