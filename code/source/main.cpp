@@ -2,7 +2,6 @@
 #include "Halib/System.h"
 #include "SplashScreen.h"
 #include "PartyCharacter.h"
-#include "Halib/Entity.h"
 
 int main() 
 {
@@ -16,6 +15,9 @@ int main()
 	std::shared_ptr<PartyCharacter> player = std::make_shared<PartyCharacter>(playerSprite, Halib::VecI2(200, 120));
 	Halib::AddEntity(player);
 
+	auto background = std::make_shared<Halib::Tilemap>("assets/NinjaAdventure/Backgrounds/Tilesets/TilesetWater.bmp", Halib::VecI2(28, 17), "assets/Tilemaps/mainMap.json");
+	Halib::rendersystem.tilemap = background;
+
 	Halib::rendersystem.backgroundColor = Halib::Color(15, 15, 15);
 
 	//This is your game loop. The program should never leave it.
@@ -23,7 +25,7 @@ int main()
 	{
 		Halib::Update();
 
-		Halib::rendersystem.camera.position += Halib::VecI2(1, 0);
+		Halib::rendersystem.camera.position = Halib::VecI2(player->GetPosition()) - Halib::GetScreenSize() / 2;
 	}
 
 	player->Destroy();

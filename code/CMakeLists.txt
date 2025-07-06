@@ -36,6 +36,7 @@ if(NOT DESKTOPBUILD)
   #${WUEHANS_ROOT}/lib/libsupc++.a
   fatfs
   Halib
+  json
   )
 
   target_sources(${FINAL_TARGET} PUBLIC
@@ -47,6 +48,7 @@ if(NOT DESKTOPBUILD)
 else()
   target_link_libraries(${FINAL_TARGET}
   Halib_Desktop
+  json
   )
 endif()
 

@@ -20,6 +20,12 @@ FetchContent_Declare(Halib
     GIT_TAG develop
 )
 
+FetchContent_Declare(json
+	GIT_REPOSITORY https://github.com/nlohmann/json
+	GIT_TAG v3.12.0
+)
+FetchContent_MakeAvailable(json)
+
 if(NOT DESKTOPBUILD)
 	add_subdirectory(lib)
 endif()
