@@ -16,15 +16,9 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 include(FetchContent)
 FetchContent_Declare(Halib
-    GIT_REPOSITORY "C:/Users/Yannik Stamm/Desktop/Halib"
+    GIT_REPOSITORY "https://github.com/Byter64/Halib"
     GIT_TAG develop
 )
-
-FetchContent_Declare(json
-	GIT_REPOSITORY https://github.com/nlohmann/json
-	GIT_TAG v3.12.0
-)
-FetchContent_MakeAvailable(json)
 
 if(NOT DESKTOPBUILD)
 	add_subdirectory(lib)

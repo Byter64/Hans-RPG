@@ -10,6 +10,12 @@ endif()
 
 add_executable(${FINAL_TARGET})
 
+FetchContent_Declare(json
+	GIT_REPOSITORY https://github.com/nlohmann/json
+	GIT_TAG v3.12.0
+)
+FetchContent_MakeAvailable(json)
+
 #COMMENT THIS IN on ASSSET CHANGES
 #add_custom_target(copy_assets
 #    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_LIST_DIR}/assets ${CMAKE_CURRENT_BINARY_DIR}/assets
@@ -36,7 +42,6 @@ if(NOT DESKTOPBUILD)
   #${WUEHANS_ROOT}/lib/libsupc++.a
   fatfs
   Halib
-  json
   )
 
   target_sources(${FINAL_TARGET} PUBLIC
@@ -48,7 +53,6 @@ if(NOT DESKTOPBUILD)
 else()
   target_link_libraries(${FINAL_TARGET}
   Halib_Desktop
-  json
   )
 endif()
 
